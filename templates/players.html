@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de Jogadores</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Times</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.team_names or 'Nenhum time associado' }}</td>
+                <td>
+                    <a href="{{ url_for('main.edit_player', id=player.id) }}" class="but-edit">Editar</a> |
+                    <form action="{{ url_for('main.delete_player', id=player.id) }}"  method="post" style="display:inline;" onclick="return confirm('Tem certeza que deseja excluir este jogador?')">
+                        <button type="submit">Excluir</button>
+                    </form> 
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

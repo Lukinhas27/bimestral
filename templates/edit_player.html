@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Jogador</h2>
+
+<form action="" method="post">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" value="{{ player.name }}" required><br><br>
+    <label for="teams">Times:</label>
+    <select multiple id="teams" name="teams">
+        {% for team in teams %}
+            <option value="{{ team.id }}" {% if team.id in selected_teams %}selected{% endif %}>{{ team.name }}</option>
+        {% endfor %}
+    </select><br><br>
+    <input type="submit" value="Atualizar Jogador">
+</form>
+{% endblock %}

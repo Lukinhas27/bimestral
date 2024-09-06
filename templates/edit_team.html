@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Time</h2>
+
+<form method="post">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" value="{{ team.name }}" required>
+
+    <label for="players">Jogadores:</label>
+    <select id="players" name="players" multiple>
+        {% for player in players %}
+            <option value="{{ player.id }}" 
+                {% if player.id in selected_players %}selected{% endif %}>
+                {{ player.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}
